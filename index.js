@@ -194,8 +194,16 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-    /*code here*/
+function getAverageWordLength(arr){
+    let newArr = [...arr];
+
+    let result = 0;
+
+    for(let i = 0; i < newArr.length; i++){
+        result = result + newArr[i].split(" ").length;
+    }
+    result = Math.round(result / newArr.length);
+    return result;
 }
 
 
@@ -212,12 +220,24 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-    /*code here*/
+function getRandomFlavors(ogFlavors, nFlavors, seasFlavors, regFlavors){ //31, 23, 24, 24
+    const flavorArray = ogFlavors.concat(nFlavors, seasFlavors, regFlavors);
+    let arrIndex;
+    let result = [];
+
+    for(let i = 0; i < 31; i++){
+        arrIndex = Math.round(Math.random() * 102);
+        result.push(flavorArray[arrIndex]);
+    }
+    return result;
 }
 
+
+
+
+
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
-const newFlavors = [
+const newFlavors = [ //23
     "Date night",
     "U.S.S Butterscotch (Stranger Things special)",
     "Honey Almond",
@@ -243,7 +263,7 @@ const newFlavors = [
     "Rainbow Swirl"
 ] 
 
-const seasonalFlavors = [
+const seasonalFlavors = [ //24
     "America's Birthday Cake",
     "Baseball Nut®",
     "Blueberry Cheesecake",
@@ -270,7 +290,7 @@ const seasonalFlavors = [
     "Mango Tango"
 ]
 
-const regionalFlavors = [
+const regionalFlavors = [ //24
     "Pink Bubblegum",
     "Caramel Macchiato",
     "York Peppermint Pattie",
