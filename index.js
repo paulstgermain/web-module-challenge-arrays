@@ -45,8 +45,8 @@ Use the copy function below to do the following:
     2. Return a copy of the received array  
 */
 
-function copy(/*your code here*/){
-    /*your code here*/
+function copy(arr){
+    return arr.slice();
 }    
 
 
@@ -64,8 +64,12 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
-   /*your code here*/
+function is31Flavors(arr){
+   if(arr.length === 31){
+       return true;
+   } else{
+       return false;
+   }
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -81,8 +85,9 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-   /*your code here*/
+function addFlavor(arr, flavor){
+   arr.unshift(flavor);
+   return arr;
 }
 
 
@@ -97,8 +102,10 @@ Use the removeLastFlavor function below to do the following:
     For example: running removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]
 */
 
-function removeLastFlavor(/*your code here*/){
-   /*your code here*/
+function removeLastFlavor(arr){
+   arr.pop();
+
+   return arr;
 }
 
 
@@ -107,15 +114,15 @@ function removeLastFlavor(/*your code here*/){
 Write a function that returns a flavor at a given index in the array.
 
 Use the getFlavorByIndex function below to do the following:
-    1. Recieve an array
+    1. Receive an array
     2. Receive a number (the desired index)
     3. Return the flavor located at the received index position
 
     For example: running getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully
 */
 
-function getFlavorByIndex(/*your code here*/){
-    /*your code here*/
+function getFlavorByIndex(arr, index){
+    return arr[index];
 }
 
 
@@ -134,8 +141,10 @@ Use the removeFlavorByName function below to do the following:
     HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-    /*your code here*/
+function removeFlavorByName(arr, flavor){
+    let index = arr.indexOf(flavor);
+    arr.splice(index, 1);
+    return arr;
 }
 
 
@@ -160,8 +169,16 @@ Use the filterByWord function below to do the following:
     DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/){
-    /*your code here*/
+function filterByWord(arr, string){
+    let newArr = [];
+
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i].includes(string) === true){
+            newArr.push(arr[i]);
+        }
+    }
+
+    return newArr;
 }
 
 
@@ -177,8 +194,16 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-    /*code here*/
+function getAverageWordLength(arr){
+    let newArr = [...arr];
+
+    let result = 0;
+
+    for(let i = 0; i < newArr.length; i++){
+        result = result + newArr[i].split(" ").length;
+    }
+    result = Math.round(result / newArr.length);
+    return result;
 }
 
 
@@ -195,12 +220,24 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-    /*code here*/
+function getRandomFlavors(ogFlavors, nFlavors, seasFlavors, regFlavors){ //31, 23, 24, 24
+    const flavorArray = ogFlavors.concat(nFlavors, seasFlavors, regFlavors);
+    let arrIndex;
+    let result = [];
+
+    for(let i = 0; i < 31; i++){
+        arrIndex = Math.round(Math.random() * 102);
+        result.push(flavorArray[arrIndex]);
+    }
+    return result;
 }
 
+
+
+
+
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
-const newFlavors = [
+const newFlavors = [ //23
     "Date night",
     "U.S.S Butterscotch (Stranger Things special)",
     "Honey Almond",
@@ -226,7 +263,7 @@ const newFlavors = [
     "Rainbow Swirl"
 ] 
 
-const seasonalFlavors = [
+const seasonalFlavors = [ //24
     "America's Birthday Cake",
     "Baseball Nut®",
     "Blueberry Cheesecake",
@@ -253,7 +290,7 @@ const seasonalFlavors = [
     "Mango Tango"
 ]
 
-const regionalFlavors = [
+const regionalFlavors = [ //24
     "Pink Bubblegum",
     "Caramel Macchiato",
     "York Peppermint Pattie",
